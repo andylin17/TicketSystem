@@ -1,0 +1,61 @@
+﻿@model TicketViewModel
+@{
+
+}
+<div class="fade-in">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<form asp-action="Edit" method="post" data-ajax="true" data-ajax-method="post" data-ajax-success="success">
+				<input type="hidden" asp-for="Id" />
+					<div class="card-body">
+						<div class="d-flex flex-row">
+							<div class="col-md-4">
+								<div class="mb-3">
+									<label for="FormInput" a class="form-label">Type</label>
+									<select class="btn btn-outline-dark form-select" asp-for="Type" disabled>
+										<option selected="">bug</option>
+									</select>
+								</div>
+								<div class="mb-3">
+									<label for="FormInputPublisher" class="form-label">*Summary</label>
+									<input type="text" class="form-control" id="FormInputPublisher" asp-for="Summary" required>
+								</div>
+								<div class="mb-3">
+									<label for="FormInputPublisher" class="form-label">*Description</label>
+									<input type="text" class="form-control" id="FormInputPublisher" asp-for="Description" required>
+								</div>
+
+							</div>
+						</div>
+						<div class="d-flex flex-row justify-content-end mt-5">
+							<div class="btn-group pe-2">
+								<button class="btn btn-block btn-outline-dark center" type="button" onclick="cancel()">
+									cancel
+								</button>
+							</div>
+							<div class="btn-group">
+								<button class="btn btn-block btn-info center" type="submit">
+									submit
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	success = function (data) {
+		alert(data.msg);
+
+		if (data.isSuccess) {
+			window.location.href = '@Url.Action("Index")';
+		}
+	}
+
+	cancel = function (data) {
+		window.location.href = '@Url.Action("Index")';
+	}
+</script>

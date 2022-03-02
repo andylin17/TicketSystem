@@ -1,0 +1,56 @@
+﻿@inject TicketSystem.Services.TicketService Service
+@{
+	ViewData["Title"] = "Ticket";
+}
+<div class="fade-in">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				@if (Service.HasAuth(User, WebFunction.Create))
+				{
+					<div class="card-header">
+						<div class="px-0 py-2">
+							<div class="btn-group">
+								<a class="btn btn-info center" asp-action="Create">
+									<span>Create</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				}
+				<div class="card-body">
+					<form asp-action="Get" method="post" data-ajax="true" data-ajax-method="post" data-ajax-update="#divTable">
+						@*<input type="hidden" asp-for="acc" value="@User.Identity.Name" />*@
+						<div class="d-flex flex-row">
+							<div class="col-md-2 ps-0">
+								<label for="FormInput" class="form-label font-weight-bold">Ticket Type</label>
+								<select class="btn btn-outline-dark form-select">
+									<option selected="">All</option>
+									<option>bug</option>
+								</select>
+							</div>
+							<div class="col-md-4 ps-0">
+								<label for="FormInput" class="form-label font-weight-bold">Created User</label>
+								<input type="text" class="form-control" placeholder="Enter user name" name="name">
+							</div>
+							<div class="btn-group">
+								<button class="btn btn-info center" type="submit">
+									<span>Search</span>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div id="divTable"></div>
+		</div>
+	</div>
+</div>
+<script>
+
+	$(function () {
+		$('form').submit();
+	});
+</script>

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Tickets>
+@inject TicketSystem.Services.TicketService Service
+@{
+}
+
+<div class="card">
+	<div class="card-body p-0">
+
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col">Id</th>
+						<th scope="col">Type</th>
+						<th scope="col">Status</th>
+						<th scope="col">Summary</th>
+						<th scope="col">Description</th>
+						<th scope="col">CreateTime</th>
+						<th scope="col">CreateUser</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>
+								@if (Service.HasAuth(User, WebFunction.Resolve) && (int)item.Status < 2)
+								{
+									<button class="btn btn-block btn-info" onclick="DoResolve(@item.Id)">Resolve</button>
+								}
+							</td>
+							<td>
+								@if (Service.HasAuth(User, WebFunction.Create))
+								{
+									<a class="btn btn-block btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+								}
+							</td>
+							<td>
+								@if (Service.HasAuth(User, WebFunction.Create))
+								{
+									<button id="del" class="btn btn-block btn-info" onclick="DoDelete(@item.Id)">Delete</button>
+								}
+							</td>
+							<td>@item.Id</td>
+							<td>@item.Type </td>
+							<td>@item.Status </td>
+							<td>@item.Summary</td>
+							<td>@item.Description</td>
+							<td>@item.CreateTime</td>
+							<td>@item.CreateUser</td>
+						</tr>
+					}
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<script>
+
+	function DoDelete(id) {
+		$.ajax({
+			url: '@Url.Action("Delete", "Ticket")?id=' + id,
+			method: 'POST',
+			success: function (data) {
+				alert(data.msg);
+				window.location.href = '@Url.Action("Index")';
+			},
+			error: function (data) {
+				alert("error occured!!");
+			}
+		})
+	}
+
+	function DoResolve(id) {
+		$.ajax({
+			url: '@Url.Action("Resolve", "Ticket")?id=' + id,
+			method: 'POST',
+			success: function (data) {
+				alert(data.msg);
+				window.location.href = '@Url.Action("Index")';
+			},
+			error: function (data) {
+				alert("error occured!!");
+			}
+		})
+	}
+</script>

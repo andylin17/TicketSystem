@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - TicketSystem</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link href="~/css/coreui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="~/css/site.css" />
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
+<body class="c-app">
+	<div class="c-wrapper c-fixed-components">
+		<header class="c-header c-header-light c-header-fixed c-header-with-subheader">
+			<ul class="c-header-nav mfs-auto"></ul>
+			<ul class="c-header-nav">
+				<li class="c-header-nav-item dropdown d-md-down-none mx-2">
+					<a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button">
+						<b>Hello，@User.Identity.Name</b>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right py-1">
+						<a class="dropdown-item text-info py-2" asp-controller="Login" asp-action="Logout">
+							<i class="cil-account-logout pe-2"></i>Logout
+						</a>
+					</div>
+				</li>
+			</ul>
+		</header>
+		<div class="container">
+			<main role="main" class="pb-3">
+				@RenderBody()
+			</main>
+		</div>
+		<footer class="border-top footer text-muted">
+			<div class="container">
+				&copy; 2022 - TicketSystem
+			</div>
+		</footer>
+	</div>
+	<script src="~/js/coreui.bundle.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@RenderSection("Scripts", required: false)
+</body>
+</html>
