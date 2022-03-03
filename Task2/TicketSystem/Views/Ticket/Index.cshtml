@@ -22,21 +22,24 @@
 					<form asp-action="Get" method="post" data-ajax="true" data-ajax-method="post" data-ajax-update="#divTable">
 						@*<input type="hidden" asp-for="acc" value="@User.Identity.Name" />*@
 						<div class="d-flex flex-row">
-							<div class="col-md-2 ps-0">
+							<div class="col-md-2">
 								<label for="FormInput" class="form-label font-weight-bold">Ticket Type</label>
-								<select class="btn btn-outline-dark form-select">
+								<select class="btn btn-outline-dark">
 									<option selected="">All</option>
 									<option>bug</option>
 								</select>
 							</div>
-							<div class="col-md-4 ps-0">
+							<div class="col-md-4 pfs-sm-2">
 								<label for="FormInput" class="form-label font-weight-bold">Created User</label>
 								<input type="text" class="form-control" placeholder="Enter user name" name="name">
 							</div>
-							<div class="btn-group">
-								<button class="btn btn-info center" type="submit">
-									<span>Search</span>
-								</button>
+
+							<div class="col-md-2 pfs-sm-2 d-inline-flex align-items-end">
+								<div class="btn-group">
+									<button class="btn btn-info center" type="submit">
+										<span>Search</span>
+									</button>
+								</div>
 							</div>
 						</div>
 					</form>
